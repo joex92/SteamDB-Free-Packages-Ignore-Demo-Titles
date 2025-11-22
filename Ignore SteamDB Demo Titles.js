@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      1.3
+// @version      1.5
 // @description  Adds a button that will automatically ignore all Demo/Prologue Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
@@ -12,12 +12,14 @@
 
 (function() {
     'use strict';
-
-    function ignoreDemoTitles() {
+    
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    
+    async function ignoreDemoTitles() {
         const packages = document.querySelectorAll('.package');
         const games = [];
 
-        packages.forEach(p => {
+        for ( const [i, p] of packages.entries() ) {
             const removeLink = p.querySelector(".js-remove");
             if (removeLink) {
                 const name = p.childNodes[p.childNodes.length-1].textContent;
@@ -27,8 +29,11 @@
                     removeLink.click();
                 }
             }
-        });
-
+            if (i % 100 === 0) {
+                await sleep(0);
+            }
+        }
+        
         return games;
     }
     const chk = document.createElement('input');
@@ -47,6 +52,14 @@
     }, { capture: true });
     activateButton.parentElement.appendChild(noDemoButton);
     activateButton.addEventListener('click', () => {
-        if ( chk.checked ) console.log("Ignored Titles:", ignoreDemoTitles() );
+        const originalText = activateButton.textContent;
+        if ( chk.checked ) {
+            noDemoButton.disabled = true;
+            activateButton.textContent = `⌛ Ignoring Demo/Prologue Titles`;
+            const titles = ignoreDemoTitles();
+            console.log("Ignored Titles:", titles);
+            noDemoButton.disabled = false;
+            activateButton.textContent = originalText;
+        }
     }, { capture: true });
 })();

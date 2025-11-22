@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      1.5
+// @version      1.6
 // @description  Adds a button that will automatically ignore all Demo/Prologue Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
@@ -13,9 +13,7 @@
 (function() {
     'use strict';
     
-    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-    
-    async function ignoreDemoTitles() {
+    function ignoreDemoTitles() {
         const packages = document.querySelectorAll('.package');
         const games = [];
 
@@ -23,14 +21,11 @@
             const removeLink = p.querySelector(".js-remove");
             if (removeLink) {
                 const name = p.childNodes[p.childNodes.length-1].textContent;
-                const isDemo = (name.search(/(\s|\()(demo|prologue)(?![a-z])/i) > -1);
+                const isDemo = (name.search(/\b(demo|prologue)\b/i) > -1);
                 if (isDemo) {
                     games.push(name);
                     removeLink.click();
                 }
-            }
-            if (i % 100 === 0) {
-                await sleep(0);
             }
         }
         

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
-// @namespace    http://tampermonkey.net/
-// @version      1.1
+// @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
+// @version      1.2
 // @description  Adds a button that will automatically ignore all Demo/Prologue Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*

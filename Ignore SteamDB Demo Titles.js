@@ -47,6 +47,6 @@
     }, { capture: true });
     activateButton.parentElement.appendChild(noDemoButton);
     activateButton.addEventListener('click', () => {
-        if ( chk.checked ) console.log( ignoreDemoTitles() );
+        if ( chk.checked ) console.log("Ignored:", ignoreDemoTitles() );
     }, { capture: true });
 })();

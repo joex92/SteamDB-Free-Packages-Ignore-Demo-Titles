@@ -6,9 +6,9 @@
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=steamdb.info
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_addValueChangeListener
+// @grant        GM.setValue
+// @grant        GM.getValue
+// @grant        GM.addValueChangeListener
 // @license      MIT
 // ==/UserScript==
 
@@ -50,7 +50,7 @@
     const noDemoButton = document.createElement("button");
     noDemoButton.className = 'btn btn-primary';
     window.onload = (ev) => {
-        const games2remove = JSON.parse(await GM.getValue("games2remove", "{}"));
+        const games2remove = JSON.parse(GM.getValue("games2remove", "{}"));
         console.log(games2remove,ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);

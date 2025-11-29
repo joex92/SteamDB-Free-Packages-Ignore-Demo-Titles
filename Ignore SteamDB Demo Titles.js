@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      2.0
+// @version      2.1
 // @description  Adds a button that will automatically ignore all Demo Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
@@ -16,7 +16,7 @@
 
     GM_addValueChangeListener("games2remove", function(name, old_value, new_value, remote) {
         if (remote) { // 'remote' means the change happened in another tab/window
-            console.log(name, old_value, new_value, remote);
+            console.log("data:", name, old_value, new_value, remote);
             // Do your interaction here (e.g., click a button)
         }
     });
@@ -48,21 +48,24 @@
     const activateButton = document.querySelector("#js-activate-now");
     const noDemoButton = document.createElement("button");
     noDemoButton.className = 'btn btn-primary';
-    noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
-    noDemoButton.appendChild(chk);
-    noDemoButton.addEventListener('click', () => {
-        chk.checked = !chk.checked;
-    }, { capture: true });
-    activateButton.parentElement.appendChild(noDemoButton);
-    activateButton.addEventListener('click', () => {
-        const originalText = activateButton.textContent;
-        if ( chk.checked ) {
-            noDemoButton.disabled = true;
-            activateButton.textContent = `⌛ Ignoring Demo/Prologue Titles`;
-            const titles = ignoreDemoTitles();
-            console.log("Ignored Titles:", titles);
-            noDemoButton.disabled = false;
-            activateButton.textContent = originalText;
-        }
-    }, { capture: true });
+    window.onload = (ev) => {
+        console.log(GM_getValue("games2remove",null),ev);
+        noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
+        noDemoButton.appendChild(chk);
+        noDemoButton.addEventListener('click', () => {
+            chk.checked = !chk.checked;
+        }, { capture: true });
+        activateButton.parentElement.appendChild(noDemoButton);
+        activateButton.addEventListener('click', () => {
+            const originalText = activateButton.textContent;
+            if ( chk.checked ) {
+                noDemoButton.disabled = true;
+                activateButton.textContent = `⌛ Ignoring Demo/Prologue Titles`;
+                const titles = ignoreDemoTitles();
+                console.log("Ignored Titles:", titles);
+                noDemoButton.disabled = false;
+                activateButton.textContent = originalText;
+            }
+        }, { capture: true });
+    }
 })();

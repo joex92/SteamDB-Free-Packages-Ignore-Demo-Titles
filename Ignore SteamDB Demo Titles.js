@@ -52,7 +52,7 @@
     window.onload = async (ev) => {
         const games2remove = JSON.parse(await GM.getValue("games2remove", (name, old_value, new_value, remote) => {
                 console.log("data:", name, old_value, new_value, remote);
-        });
+        }));
         console.log(games2remove,ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);

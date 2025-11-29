@@ -1,17 +1,25 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      1.8.2
+// @version      2.0
 // @description  Adds a button that will automatically ignore all Demo Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=steamdb.info
-// @grant        none
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @license      MIT
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    GM_addValueChangeListener("games2remove", function(name, old_value, new_value, remote) {
+        if (remote) { // 'remote' means the change happened in another tab/window
+            console.log(name, old_value, new_value, remote);
+            // Do your interaction here (e.g., click a button)
+        }
+    });
     
     function ignoreDemoTitles() {
         const packages = document.querySelectorAll('.package');

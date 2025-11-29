@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      1.8.1
+// @version      1.8.2
 // @description  Adds a button that will automatically ignore all Demo Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
@@ -21,7 +21,7 @@
             const removeLink = p.querySelector(".js-remove");
             if (removeLink) {
                 const name = p.childNodes[p.childNodes.length-1].textContent;
-                const isDemo = (name.search(/\b(free weekend|demo|prologue|trial|episode|alpha|beta|sample|part|trailer|демо|пролог|эпизод|альфа|бета|тест|пробная)\b|(体験|試用|デモ|ベータ|アルファ|序章|试玩|試玩|体验|體驗|演示|前編|前篇|체험|프롤로그|에피소드|알파|베타)(版|판)?|お試し/i) > -1);
+                const isDemo = (name.search(/\b(free weekend|demo|prologue|trial|episode|chapter|alpha|beta|sample|part|trailer|демо|пролог|эпизод|альфа|бета|тест|пробная)\b|(体験|試用|デモ|ベータ|アルファ|序章|试玩|試玩|体验|體驗|演示|前編|前篇|체험|프롤로그|에피소드|알파|베타)(版|판)?|お試し/i) > -1);
                 if (isDemo) {
                     games.push(name);
                     removeLink.click();

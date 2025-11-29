@@ -50,7 +50,7 @@
     const noDemoButton = document.createElement("button");
     noDemoButton.className = 'btn btn-primary';
     window.onload = (ev) => {
-        console.log(GM.getValue("games2remove"),ev);
+        console.log(await GM.getValue("games2remove"),ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);
         noDemoButton.addEventListener('click', () => {

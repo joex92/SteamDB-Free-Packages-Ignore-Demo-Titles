@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      2.2
+// @version      2.2.1
 // @description  Adds a button that will automatically ignore all Demo Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
@@ -50,7 +50,7 @@
     const noDemoButton = document.createElement("button");
     noDemoButton.className = 'btn btn-primary';
     window.onload = (ev) => {
-        console.log(await GM.getValue("games2remove"),ev);
+        console.log(JSON.parse(await GM.getValue("games2remove", "{}")),ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);
         noDemoButton.addEventListener('click', () => {

@@ -6,9 +6,9 @@
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=steamdb.info
-// @grant        GM.setValue
-// @grant        GM.getValue
-// @grant        GM.addValueChangeListener
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM_addValueChangeListener
 // @license      MIT
 // ==/UserScript==
 

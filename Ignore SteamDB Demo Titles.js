@@ -13,14 +13,14 @@
 
 (function() {
     'use strict';
-
+/*
     GM_addValueChangeListener("games2remove", function(name, old_value, new_value, remote) {
         if (remote) { // 'remote' means the change happened in another tab/window
             console.log("data:", name, old_value, new_value, remote);
             // Do your interaction here (e.g., click a button)
         }
     });
-    
+    */
     function ignoreDemoTitles() {
         const packages = document.querySelectorAll('.package');
         const games = [];

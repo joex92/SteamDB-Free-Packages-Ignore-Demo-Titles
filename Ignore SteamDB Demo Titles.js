@@ -1,26 +1,27 @@
 // ==UserScript==
 // @name         One-Click Ignore SteamDB Demo Titles
 // @namespace    https://github.com/joex92/SteamDB-Free-Packages-Ignore-Demo-Titles
-// @version      2.1
+// @version      2.2
 // @description  Adds a button that will automatically ignore all Demo Titles
 // @author       JoeX92
 // @match        https://steamdb.info/freepackages/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=steamdb.info
-// @grant        GM_setValue
-// @grant        GM_getValue
+// @grant        GM.setValue
+// @grant        GM.getValue
+// @grant        GM.addValueChangeListener
 // @license      MIT
 // ==/UserScript==
 
 (function() {
     'use strict';
-/*
-    GM_addValueChangeListener("games2remove", function(name, old_value, new_value, remote) {
+
+    GM.addValueChangeListener("games2remove", function(name, old_value, new_value, remote) {
         if (remote) { // 'remote' means the change happened in another tab/window
             console.log("data:", name, old_value, new_value, remote);
             // Do your interaction here (e.g., click a button)
         }
     });
-    */
+
     function ignoreDemoTitles() {
         const packages = document.querySelectorAll('.package');
         const games = [];
@@ -49,7 +50,7 @@
     const noDemoButton = document.createElement("button");
     noDemoButton.className = 'btn btn-primary';
     window.onload = (ev) => {
-        console.log(GM_getValue("games2remove",null),ev);
+        console.log(GM.getValue("games2remove",null),ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);
         noDemoButton.addEventListener('click', () => {

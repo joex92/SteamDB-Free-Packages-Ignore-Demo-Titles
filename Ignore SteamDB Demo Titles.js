@@ -49,8 +49,8 @@
     const activateButton = document.querySelector("#js-activate-now");
     const noDemoButton = document.createElement("button");
     noDemoButton.className = 'btn btn-primary';
-    window.onload = (ev) => {
-        const games2remove = JSON.parse(GM.getValue("games2remove", "{}"));
+    window.onload = async (ev) => {
+        const games2remove = JSON.parse(await GM.getValue("games2remove", "{}"));
         console.log(games2remove,ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);

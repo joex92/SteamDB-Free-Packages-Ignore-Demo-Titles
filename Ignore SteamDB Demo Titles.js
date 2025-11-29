@@ -51,10 +51,11 @@
     noDemoButton.className = 'btn btn-primary';
     window.onload = async (ev) => {
         const games2remove = JSON.parse(await GM.getValue("games2remove", function(name, old_value, new_value, remote) {
-        if (remote) { // 'remote' means the change happened in another tab/window
-            console.log("data:", name, old_value, new_value, remote);
-            // Do your interaction here (e.g., click a button)
-        }));
+            if (remote) { // 'remote' means the change happened in another tab/window
+                console.log("data:", name, old_value, new_value, remote);
+                // Do your interaction here (e.g., click a button)
+            }
+        });
         console.log(games2remove,ev);
         noDemoButton.appendChild(document.createTextNode('Ignore all Demo titles'));
         noDemoButton.appendChild(chk);
